@@ -119,16 +119,9 @@ int main()
   srand(time(NULL));
   populateArray(N);
   //showArrayContents();  uncomment when you want to see the contents of the mutiDimArray.
-  int x1, x2, y1, y2;
-  int trial = 4;
-  printf("");
-  do
-  {
-    cout << "Enter coordinate on the for x1 <Enter> x2 <Enter> x3 <Enter> and x4 <Enter>" << endl;
-    cin >> x1 >> x2 >> y1 >> y2;
-    searchValidEntries(80, x2, y1, y2);
-    trial--;
-  } while (trial > 0);
 
-  garbageCollect();
+  searchValidEntries(80, 1, 100, 10);
+  searchValidEntries(10, 20, 40, 79);
+  searchValidEntries(1, 90, 100, 100);
+  searchValidEntries(50, 50, 70, 70);
 }
