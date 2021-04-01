@@ -7,7 +7,6 @@ using namespace std;
 //global vars and methods
 const int N = 101;
 int **A = 0;
-random_device predict;
 
 int **arrayInit(int N);
 void showArrayContents();
@@ -65,12 +64,12 @@ void garbageCollect()
   }
   delete[] A;
   A = 0;
-  printf("Ready.\n");
+  printf("Done.\n");
 }
 
 int **populateArray(int N)
 {
-  int populant = 20000;
+  int populant = 2000;
 
   do
   {
@@ -86,10 +85,10 @@ int **populateArray(int N)
 }
 void searchValidEntries(int XL, int YL, int XH, int YH)
 {
-  printf("\nBox contents: \n");
+  printf("\nBox contents for a : \n");
   int bH = XH - XL;
   int bW = YH - YL;
-  cout << "bH: " << bW << " bW: " << bW << endl;
+  cout << bH << " by " << bW << endl;
   for (int bi = XL; bi < XH; bi++)
   {
     for (int bj = YL; bj < YH; bj++)
@@ -103,7 +102,7 @@ void searchValidEntries(int XL, int YL, int XH, int YH)
         printf("[%i,%i] = %i \n", bi, bj, A[bi][bj]);
       }
     }
-    printf("\n");
+    printf("\n"); // Will be blank when value is empty
   }
 }
 
@@ -119,7 +118,17 @@ int main()
   //showArrayContents(); //Zeros will be displayed
   srand(time(NULL));
   populateArray(N);
-  showArrayContents();
-  searchValidEntries(1, 1, 20, 20);
+  //showArrayContents();  uncomment when you want to see the contents of the mutiDimArray.
+  int x1, x2, y1, y2;
+  int trial = 4;
+  printf("");
+  do
+  {
+    cout << "Enter coordinate on the for x1 <Enter> x2 <Enter> x3 <Enter> and x4 <Enter>" << endl;
+    cin >> x1 >> x2 >> y1 >> y2;
+    searchValidEntries(80, x2, y1, y2);
+    trial--;
+  } while (trial > 0);
+
   garbageCollect();
 }
