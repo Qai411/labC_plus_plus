@@ -1,10 +1,13 @@
 #include <iostream>
+#include <random>
+#include <time.h>
 using namespace std;
 //include <cstudio>
 
 //global vars and methods
-const int N = 10;
+const int N = 101;
 int **A = 0;
+random_device predict;
 
 int **arrayInit(int N);
 void showArrayContents();
@@ -13,7 +16,7 @@ void searchValidEntries(int XL, int YL, int XH, int YH);
 void garbageCollect();
 
 /**
- * @brief implementations of the array, just filling with
+ * @brief implementations of the array, just filling with 0s
  * @param height 
  * @param width 
  * @return int** 
@@ -56,7 +59,7 @@ void garbageCollect()
 {
   printf("\n");
   printf("Cleaning up memory...\n");
-  for (int h = 0; h < N; h++) // loop variable wasn't declared
+  for (int h = 0; h < N; h++)
   {
     delete[] A[h];
   }
@@ -71,8 +74,10 @@ int **populateArray(int N)
 
   do
   {
-    int i = rand() % N;
-    int j = rand() % N;
+    int i;
+    i = rand() % N;
+    int j;
+    j = rand() % N;
     A[i][j] += 1;
     populant--;
   } while (populant > 0);
@@ -95,9 +100,8 @@ void searchValidEntries(int XL, int YL, int XH, int YH)
       }
       else
       {
-        printf("%i |", A[bi][bj]);
+        printf("[%i,%i] = %i \n", bi, bj, A[bi][bj]);
       }
-      //printf(" ");
     }
     printf("\n");
   }
@@ -113,8 +117,9 @@ int main()
 
   // print contents of the array2D
   //showArrayContents(); //Zeros will be displayed
+  srand(time(NULL));
   populateArray(N);
   showArrayContents();
-  searchValidEntries(0, 0, 2, 2);
+  searchValidEntries(1, 1, 20, 20);
   garbageCollect();
 }
